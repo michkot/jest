@@ -22,6 +22,7 @@ import {
   printWithType,
   stringify,
 } from 'jest-matcher-utils';
+import { customDefaultEqualTesters } from './customDefaultEqualTesters';
 import type {
   MatcherState,
   MatchersObject,
@@ -59,7 +60,7 @@ const printReceivedArgs = (
 const printCommon = (val: unknown) => DIM_COLOR(stringify(val));
 
 const isEqualValue = (expected: unknown, received: unknown): boolean =>
-  equals(expected, received, [iterableEquality]);
+  equals(expected, received, [...customDefaultEqualTesters, iterableEquality]);
 
 const isEqualCall = (
   expected: Array<unknown>,
